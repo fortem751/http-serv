@@ -25,6 +25,7 @@ RUN apt-get update \
 ENV HTTPD_VERSION 2.4.23
 ENV HTTPD_SHA1 5101be34ac4a509b245adb70a56690a84fcc4e7f
 
+
 # https://issues.apache.org/jira/browse/INFRA-8753?focusedCommentId=14735394#comment-14735394
 ENV HTTPD_BZ2_URL https://www.apache.org/dyn/closer.cgi?action=download&filename=httpd/httpd-$HTTPD_VERSION.tar.bz2
 # not all the mirrors actually carry the .asc files :'(
@@ -76,6 +77,7 @@ RUN set -x \
 	&& apt-get purge -y --auto-remove $buildDeps
 
 COPY httpd-foreground /usr/local/bin/
+USER 1001
 
 EXPOSE 8080
 CMD ["httpd-foreground"]
