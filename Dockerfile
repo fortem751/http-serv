@@ -25,10 +25,10 @@ yum install -y apr-util-devel && \
 yum clean all && \
 cd /usr/src && \
 curl -sSO http://mirror.klaus-uwe.me/apache/httpd/httpd-${HTTPD_VERSION}.tar.bz2 && \
-tar xfj httpd-${HTTPD_VERSION}.tar.bz2 && \
+tar xfz httpd-${HTTPD_VERSION}.tar.bz2 && \
 cd /usr/src/${HTTPD_VERSION} && \
 ./configure --enable-mods-shared=reallyall && \
-make -j"$(nproc)" && \
+make && \
 make install  
 	 
 	
