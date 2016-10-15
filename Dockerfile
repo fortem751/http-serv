@@ -34,7 +34,7 @@ cd /usr/src/httpd-${HTTPD_VERSION} && \
 ./configure --prefix=${HTTPD_PREFIX} --enable-mods-shared=reallyall && \
 make && \
 make install && \
-sed -ri -e 's!^(\s*CustomLog)\s+\S+!\1 /proc/self/fd/1!g' -e 's!^(\s*ErrorLog)\s+\S+!\1 /proc/self/fd/2!g' "${HTTPD_PREFIX}/conf/httpd.conf" && \
+#sed -ri -e 's!^(\s*CustomLog)\s+\S+!\1 /proc/self/fd/1!g' -e 's!^(\s*ErrorLog)\s+\S+!\1 /proc/self/fd/2!g' "${HTTPD_PREFIX}/conf/httpd.conf" && \
 sed -i 's/Listen 80/Listen 8080/' ${HTTP_PREFIX}/conf/httpd.conf
 
 
