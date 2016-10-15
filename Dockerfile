@@ -1,4 +1,4 @@
-FROM docker.io/openshift/base-centos7
+ FROM docker.io/openshift/base-centos7
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 #RUN groupadd -r www-data && useradd -r --create-home -g www-data www-data
@@ -62,5 +62,5 @@ RUN set -x \
 
 COPY httpd-foreground /usr/local/bin/
 
-EXPOSE 80
+EXPOSE 8080 8443
 CMD ["httpd-foreground"]
