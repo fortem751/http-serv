@@ -35,8 +35,8 @@ make install && \
 sed -ri -e 's!^(\s*CustomLog)\s+\S+!\1 /proc/self/fd/1!g' -e 's!^(\s*ErrorLog)\s+\S+!\1 /proc/self/fd/2!g' "${HTTPD_PREFIX}/conf/httpd.conf"
 
 COPY httpd-foreground /usr/local/bin/
-RUN chmod +x /usr/local/bin/httpd-foreground
+#RUN chmod +x /usr/local/bin/httpd-foreground
 
 EXPOSE 8080 8443
-#USER 1001
+USER root
 CMD ["httpd-foreground"]
