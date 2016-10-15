@@ -7,14 +7,15 @@ MAINTAINER MBAH Johnas fortem751@gmail.com
 #RUN groupadd -r www-data && useradd -r --create-home -g www-data www-data
 
 
-#ENV HTTPD_PREFIX /usr/local/apache2
-#ENV PATH $HTTPD_PREFIX/bin:$PATH
+ENV HTTPD_PREFIX /usr/local/apache2
+ENV PATH $HTTPD_PREFIX/bin:$PATH
 #RUN mkdir -p "$HTTPD_PREFIX" \
 	#&& chown www-data:www-data "$HTTPD_PREFIX"
 #WORKDIR $HTTPD_PREFIX
 
 # install httpd runtime dependencies
 # https://httpd.apache.org/docs/2.4/install.html#requirements
+
 ENV HTTPD_VERSION 2.4.23
 
 RUN \ 
@@ -28,15 +29,13 @@ cd /usr/src && \
 curl -O http://mirror.klaus-uwe.me/apache/httpd/httpd-${HTTPD_VERSION}.tar.bz2 && \
 tar -xvf httpd-${HTTPD_VERSION}.tar.bz2 && \
 cd /usr/src/httpd-${HTTPD_VERSION} && \
-./configure --enable-mods-shared=reallyall && \
+./configure --prefix=${HTTPD_PREFIX} --enable-mods-shared=reallyall && \
 make && \
-make install  
-	 
-ADD apachectl /usr/local/apache2/bin/apachectl	
+make install && \
+sed -ri -e 's!^(\s*CustomLog)\s+\S+!\1 /proc/self/fd/1!g' -e 's!^(\s*ErrorLog)\s+\S+!\1 /proc/self/fd/2!g' "${HTTPD_PREFIX}/conf/httpd.conf"
 
-RUN chmod +x /usr/local/apache2/bin/apachectl
-#COPY httpd-foreground /usr/local/bin/
+COPY httpd-foreground /usr/local/bin/
 
 EXPOSE 8080 8443
 USER 1001
-CMD ["/usr/local/apache2/bin/apachectl start", "-D" "FOREGROUND"]
+CMD ["httpd-foreground"]
