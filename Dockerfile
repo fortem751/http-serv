@@ -1,4 +1,3 @@
-
 FROM docker.io/openshift/base-centos7
 
 MAINTAINER MBAH Johnas fortem751@gmail.com
@@ -28,7 +27,7 @@ yum clean all && \
 cd /usr/src && \
 curl -O http://mirror.klaus-uwe.me/apache/httpd/httpd-${HTTPD_VERSION}.tar.bz2 && \
 tar -xvf httpd-${HTTPD_VERSION}.tar.bz2 && \
-cd /usr/src/${HTTPD_VERSION} && \
+cd /usr/src/httpd-${HTTPD_VERSION} && \
 ./configure --enable-mods-shared=reallyall && \
 make && \
 make install  
