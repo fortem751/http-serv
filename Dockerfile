@@ -1,3 +1,4 @@
+
 FROM docker.io/openshift/base-centos7
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
@@ -58,6 +59,7 @@ RUN set -x \
 		-e 's!^(\s*ErrorLog)\s+\S+!\1 /proc/self/fd/2!g' \
 		"$HTTPD_PREFIX/conf/httpd.conf" \
 	\
+	&& 
 	
 
 COPY httpd-foreground /usr/local/bin/
