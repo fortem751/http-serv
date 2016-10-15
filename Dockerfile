@@ -38,4 +38,4 @@ make install
 
 EXPOSE 8080 8443
 USER 1001
-CMD ["/usr/local/apache2/bin/apachectl start"]
+ENTRYPOINT ["/usr/local/apache2/bin/apachectl", "-D" "FOREGROUND"]
