@@ -1,4 +1,5 @@
 FROM docker.io/openshift/base-centos7
+USER root
 
 MAINTAINER MBAH Johnas fortem751@gmail.com
 
@@ -38,5 +39,5 @@ COPY httpd-foreground /usr/local/bin/
 RUN chmod +x /usr/local/bin/httpd-foreground
 
 EXPOSE 8080 8443
-USER root
+#USER root
 CMD ["httpd-foreground"]
