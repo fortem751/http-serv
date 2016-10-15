@@ -4,14 +4,14 @@ MAINTAINER MBAH Johnas fortem751@gmail.com
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 
-#RUN groupadd -r www-data && useradd -r --create-home -g www-data www-data
+RUN groupadd -r www-data && useradd -r --create-home -g www-data www-data
 
 
 ENV HTTPD_PREFIX /usr/local/apache2
 ENV PATH $HTTPD_PREFIX/bin:$PATH
-#RUN mkdir -p "$HTTPD_PREFIX" \
-	#&& chown www-data:www-data "$HTTPD_PREFIX"
-#WORKDIR $HTTPD_PREFIX
+RUN mkdir -p "$HTTPD_PREFIX" \
+	&& chown www-data:www-data "$HTTPD_PREFIX"
+WORKDIR $HTTPD_PREFIX
 
 # install httpd runtime dependencies
 # https://httpd.apache.org/docs/2.4/install.html#requirements
