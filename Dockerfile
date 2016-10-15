@@ -1,4 +1,4 @@
- FROM docker.io/openshift/base-centos7
+FROM docker.io/openshift/base-centos7
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 
@@ -9,7 +9,7 @@ ENV HTTPD_PREFIX /usr/local/apache2
 ENV PATH $HTTPD_PREFIX/bin:$PATH
 RUN mkdir -p "$HTTPD_PREFIX" \
 	&& chown www-data:www-data "$HTTPD_PREFIX"
-WORKDIR $HTTPD_PREFIX
+WORKDIR=$HTTPD_PREFIX
 
 # install httpd runtime dependencies
 # https://httpd.apache.org/docs/2.4/install.html#requirements
@@ -24,9 +24,9 @@ ENV HTTPD_VERSION 2.4.23
 ENV HTTPD_SHA1 5101be34ac4a509b245adb70a56690a84fcc4e7f
 
 # https://issues.apache.org/jira/browse/INFRA-8753?focusedCommentId=14735394#comment-14735394
-ENV HTTPD_BZ2_URL http://mirror.klaus-uwe.me/apache/httpd/httpd-$HTTPD_VERSION.tar.bz2
+ENV HTTPD_BZ2_URL http://mirror.klaus-uwe.me/apache/httpd/httpd-2.4.23.tar.bz2
 # not all the mirrors actually carry the .asc files :'(
-ENV HTTPD_ASC_URL https://www.apache.org/dist/httpd/httpd-$HTTPD_VERSION.tar.bz2.asc
+ENV HTTPD_ASC_URL https://www.apache.org/dist/httpd/httpd-2.4.23.tar.bz2.asc
 
 # see https://httpd.apache.org/docs/2.4/install.html#requirements
 RUN set -x \
