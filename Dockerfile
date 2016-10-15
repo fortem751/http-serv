@@ -1,7 +1,8 @@
  FROM docker.io/openshift/base-centos7
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-#RUN groupadd -r www-data && useradd -r --create-home -g www-data www-data
+
+RUN groupadd -r www-data && useradd -r --create-home -g www-data www-data
 
 
 ENV HTTPD_PREFIX /usr/local/apache2
