@@ -32,10 +32,11 @@ cd /usr/src/httpd-${HTTPD_VERSION} && \
 make && \
 make install  
 	 
-	
+ADD apachectl /usr/local/apache2/bin/apachectl	
 
+RUN chmod +x /usr/local/apache2/bin/apachectl
 #COPY httpd-foreground /usr/local/bin/
 
 EXPOSE 8080 8443
 USER 1001
-ENTRYPOINT ["/usr/local/apache2/bin/apachectl", "-D" "FOREGROUND"]
+CMD ["/usr/local/apache2/bin/apachectl start", "-D" "FOREGROUND"]
