@@ -1,4 +1,3 @@
-
 FROM docker.io/openshift/base-centos7
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
@@ -21,27 +20,27 @@ RUN yum -y update \
 		apr-devel \
 		apr-util-devel \
 
-ENV HTTPD_VERSION 2.4.23
-ENV HTTPD_SHA1 5101be34ac4a509b245adb70a56690a84fcc4e7f
+#ENV HTTPD_VERSION 2.4.23
+#ENV HTTPD_SHA1 5101be34ac4a509b245adb70a56690a84fcc4e7f
 
 # https://issues.apache.org/jira/browse/INFRA-8753?focusedCommentId=14735394#comment-14735394
 ENV HTTPD_BZ2_URL http://mirror.klaus-uwe.me/apache/httpd/httpd-2.4.23.tar.bz2
 # not all the mirrors actually carry the .asc files :'(
-ENV HTTPD_ASC_URL https://www.apache.org/dist/httpd/httpd-2.4.23.tar.bz2.asc
+#ENV HTTPD_ASC_URL https://www.apache.org/dist/httpd/httpd-2.4.23.tar.bz2.asc
 
 # see https://httpd.apache.org/docs/2.4/install.html#requirements
 RUN set -x \
 	&& wget -O httpd.tar.bz2 "$HTTPD_BZ2_URL" \
-	&& echo "$HTTPD_SHA1 *httpd.tar.bz2" | sha1sum -c - \
+	#&& echo "$HTTPD_SHA1 *httpd.tar.bz2" | sha1sum -c - \
 # see https://httpd.apache.org/download.cgi#verify
-	&& wget -O httpd.tar.bz2.asc "$HTTPD_ASC_URL" \
-	&& export GNUPGHOME="$(mktemp -d)" \
-	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys A93D62ECC3C8EA12DB220EC934EA76E6791485A8 \
-	&& gpg --batch --verify httpd.tar.bz2.asc httpd.tar.bz2 \
-	&& rm -r "$GNUPGHOME" httpd.tar.bz2.asc \
+	#&& wget -O httpd.tar.bz2.asc "$HTTPD_ASC_URL" \
+	#&& export GNUPGHOME="$(mktemp -d)" \
+	#&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys A93D62ECC3C8EA12DB220EC934EA76E6791485A8 \
+	#&& gpg --batch --verify httpd.tar.bz2.asc httpd.tar.bz2 \
+	#&& rm -r "$GNUPGHOME" httpd.tar.bz2.asc \
 	\
 	&& mkdir -p src \
-	&& tar -xvf httpd.tar.bz2 -C src --strip-components=1 \
+	&& tar -xvf httpd.tar.bz2 -C src \
 	&& rm httpd.tar.bz2 \
 	&& cd src \
 	\
