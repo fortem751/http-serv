@@ -19,6 +19,7 @@ RUN yum -y update \
 		openssl-devel \
 		apr-devel \
 		apr-util-devel \
+	&&
 
 #ENV HTTPD_VERSION 2.4.23
 #ENV HTTPD_SHA1 5101be34ac4a509b245adb70a56690a84fcc4e7f
