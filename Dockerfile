@@ -16,6 +16,8 @@ MAINTAINER MBAH Johnas fortem751@gmail.com
 
 # install httpd runtime dependencies
 # https://httpd.apache.org/docs/2.4/install.html#requirements
+ENV HTTPD_VERSION 2.4.23
+
 RUN \ 
 yum update -y && \
 yum install -y gcc && \
@@ -24,8 +26,8 @@ yum install -y apr-devel && \
 yum install -y apr-util-devel && \
 yum clean all && \
 cd /usr/src && \
-curl -sSO http://mirror.klaus-uwe.me/apache/httpd/httpd-${HTTPD_VERSION}.tar.bz2 && \
-tar xfz httpd-${HTTPD_VERSION}.tar.bz2 && \
+curl -O http://mirror.klaus-uwe.me/apache/httpd/httpd-${HTTPD_VERSION}.tar.bz2 && \
+tar -xvf httpd-${HTTPD_VERSION}.tar.bz2 && \
 cd /usr/src/${HTTPD_VERSION} && \
 ./configure --enable-mods-shared=reallyall && \
 make && \
