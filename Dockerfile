@@ -1,4 +1,4 @@
-ROM docker.io/openshift/base-centos7
+FROM docker.io/openshift/base-centos7
 
 
 MAINTAINER MBAH Johnas fortem751@gmail.com
