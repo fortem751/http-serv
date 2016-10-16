@@ -35,7 +35,8 @@ cd /usr/src/httpd-${HTTPD_VERSION} && \
 make && \
 make install && \
 #sed -ri -e 's!^(\s*CustomLog)\s+\S+!\1 /proc/self/fd/1!g' -e 's!^(\s*ErrorLog)\s+\S+!\1 /proc/self/fd/2!g' "${HTTPD_PREFIX}/conf/httpd.conf" && \
-sed -ri -e 's/Listen 80/Listen 8080/\nListen 8443' /usr/local/apache2/conf/httpd.conf
+sed -ri -e 's/Listen 80/Listen 8080/' /usr/local/apache2/conf/httpd.conf && \
+sed -i '/Listen 8080/a Listen 8443' /usr/local/apache2/conf/httpd.conf
 
 
 #COPY httpd-foreground /usr/local/bin/
