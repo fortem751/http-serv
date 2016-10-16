@@ -3,7 +3,7 @@ FROM docker.io/openshift/base-centos7
 
 MAINTAINER MBAH Johnas fortem751@gmail.com
 
-EXPOSE 8080 
+EXPOSE 8080 8443
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 
 #RUN groupadd -r www-data && useradd -r --create-home -g www-data www-data
@@ -35,7 +35,7 @@ cd /usr/src/httpd-${HTTPD_VERSION} && \
 make && \
 make install && \
 #sed -ri -e 's!^(\s*CustomLog)\s+\S+!\1 /proc/self/fd/1!g' -e 's!^(\s*ErrorLog)\s+\S+!\1 /proc/self/fd/2!g' "${HTTPD_PREFIX}/conf/httpd.conf" && \
-sed -ri -e 's/Listen 80/Listen 8080/' /usr/local/apache2/conf/httpd.conf
+sed -ri -e 's/Listen 80/Listen 8080/\nListen 8443' /usr/local/apache2/conf/httpd.conf
 
 
 #COPY httpd-foreground /usr/local/bin/
