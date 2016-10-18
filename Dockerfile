@@ -40,7 +40,7 @@ sed -i '/Listen 8080/a Listen 8443' /usr/local/apache2/conf/httpd.conf
 
 
 #COPY httpd-foreground /usr/local/bin/
-RUN chmod -R a+rwx /usr/local/apache2/bin/httpd /usr/local/apache2/logs
+RUN chmod -R a+rwx  /usr/local/apache2/ /usr/local/apache2/bin/httpd /usr/local/apache2/logs
 
 #EXPOSE 80
 USER 1001
