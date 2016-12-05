@@ -28,7 +28,7 @@ yum install -y apr-devel && \
 yum install -y apr-util-devel && \
 yum clean all && \
 cd /usr/src && \
-curl -O http://mirror.klaus-uwe.me/apache/httpd/httpd-${HTTPD_VERSION}.tar.bz2 && \
+curl -O http://www-eu.apache.org/dist/httpd/httpd-${HTTPD_VERSION}.tar.bz2 && \
 tar -xvf httpd-${HTTPD_VERSION}.tar.bz2 && \
 cd /usr/src/httpd-${HTTPD_VERSION} && \
 ./configure --enable-mods-shared=reallyall && \
