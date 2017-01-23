@@ -18,7 +18,7 @@ EXPOSE 8080 8443
 # install httpd runtime dependencies
 # https://httpd.apache.org/docs/2.4/install.html#requirements
 
-ENV HTTPD_VERSION 2.4.23
+ENV HTTPD_VERSION 2.4.25
 
 RUN \ 
 yum update -y && \
